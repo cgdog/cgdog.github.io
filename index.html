@@ -369,6 +369,246 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/learnGit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cgdog">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cgdog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/29/learnGit/" itemprop="url">Learn Git</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-29T22:16:45+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Git Book读书笔记: <a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">https://git-scm.com/book/en/v2</a></p>
+<h1 id="Get-git-repository"><a href="#Get-git-repository" class="headerlink" title="Get git repository"></a>Get git repository</h1><p><em>两种方法：</em></p>
+<h4 id="1-从本地目录创建"><a href="#1-从本地目录创建" class="headerlink" title="1 从本地目录创建"></a>1 从本地目录创建</h4><p>1)  cd e:/mynotes</p>
+<p>2)  git init</p>
+<p>3)  git add *.c</p>
+<p>4)  git add LICENSE</p>
+<p>5)  git commit -m ‘initial project version’</p>
+<p>删除文件用 git rm。 从git版本库中删除文件但不在磁盘上删除：</p>
+<pre><code>git rm -r public/ --cached
+git commit -m &quot;remove public folder from git&quot;
+</code></pre><h4 id="2-从远程clone一个仓库到本地"><a href="#2-从远程clone一个仓库到本地" class="headerlink" title="2 从远程clone一个仓库到本地"></a>2 从远程clone一个仓库到本地</h4><ul>
+<li><p>git clone <a href="https://github.com/libgit2/libgit2" target="_blank" rel="noopener">https://github.com/libgit2/libgit2</a></p>
+</li>
+<li><p>git clone <a href="https://github.com/libgit2/libgit2" target="_blank" rel="noopener">https://github.com/libgit2/libgit2</a> mylibgit</p>
+</li>
+</ul>
+<h1 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h1><p>git add is a multipurpose command. <em>git add</em>是一个多功能的命令：</p>
+<ul>
+<li><p>to begin tracking new files</p>
+</li>
+<li><p>to stage files</p>
+</li>
+<li><p>to do other things like marking merge-conflicted files as resolved</p>
+</li>
+</ul>
+<p>It may be helpful to think of it more as “add precisely this content to<br>the next commit” rather than “add this file to the project”.</p>
+<h2 id="忽略某些文件的方法，添加-gitignore文件"><a href="#忽略某些文件的方法，添加-gitignore文件" class="headerlink" title="忽略某些文件的方法，添加.gitignore文件:"></a>忽略某些文件的方法，添加.gitignore文件:</h2><p><a href="https://github.com/github/gitignore" target="_blank" rel="noopener">https://github.com/github/gitignore</a></p>
+<pre><code> # ignore all .a files
+*.a
+
+# but do track lib.a, even though you&apos;re ignoring .a files above
+!lib.a
+
+# only ignore the TODO file in the current directory, 
+#not subdir/TODO
+/TODO
+
+# ignore all files in any directory named build
+build/
+
+# ignore doc/notes.txt, but not doc/server/arch.txt
+doc/*.txt
+
+# ignore all .pdf files in the doc/ directory 
+# and any of its subdirectories
+doc/**/*.pdf
+</code></pre><h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><ul>
+<li><p>git log</p>
+</li>
+<li><p>git log -p</p>
+</li>
+<li><p>git log -p -2</p>
+</li>
+<li><p>git log –stat</p>
+</li>
+<li><p>git log –pretty=oneline</p>
+</li>
+<li><p>git log –pretty=format:\”</p>
+</li>
+<li><p>git log –since=2.weeks</p>
+</li>
+<li><p>git log S function_name</p>
+</li>
+</ul>
+<h2 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h2><pre><code>$ git commit -m &apos;initial commit&apos;
+$ git add forgotten_file
+$ git commit --amend
+</code></pre><p>You end up with a single commit — the second commit replaces the<br>results of the first.</p>
+<h2 id="remote"><a href="#remote" class="headerlink" title="remote"></a>remote</h2><ul>
+<li><p>git remote</p>
+</li>
+<li><p>git remote -v</p>
+</li>
+</ul>
+<h3 id="Adding-Remote-Repositories"><a href="#Adding-Remote-Repositories" class="headerlink" title="Adding Remote Repositories"></a>Adding Remote Repositories</h3><pre><code>$ git remote
+origin
+$ git remote add pb https://github.com/paulboone/ticgit
+$ git remote -v
+origin  https://github.com/schacon/ticgit (fetch)
+origin  https://github.com/schacon/ticgit (push)
+pb  https://github.com/paulboone/ticgit (fetch)
+pb  https://github.com/paulboone/ticgit (push)
+</code></pre><h3 id="Fetching-and-Pulling-from-Your-Remotes"><a href="#Fetching-and-Pulling-from-Your-Remotes" class="headerlink" title="Fetching and Pulling from Your Remotes"></a>Fetching and Pulling from Your Remotes</h3><h4 id="git-fetch-remote"><a href="#git-fetch-remote" class="headerlink" title="git fetch remote"></a>git fetch remote</h4><p>The command goes out to that remote project and pulls down all the data<br>from that remote project that you don’t have yet.\<br><em>It’s important to note that the git fetch command only downloads the<br>data to your local repository: it doesn’t automatically merge it with<br>any of your work or modify what you’re currently working on. You have to<br>merge it manually into your work when you’re ready.</em></p>
+<p><em>If your current branch is set up to track a remote branch (see the next<br>section and Git Branching for more information), you can use the <strong>git<br>pull</strong> command to automatically fetch and then merge that remote branch<br>into your current branch.</em></p>
+<h3 id="Pushing-to-Your-Remotes"><a href="#Pushing-to-Your-Remotes" class="headerlink" title="Pushing to Your Remotes"></a>Pushing to Your Remotes</h3><ul>
+<li><p>git push remote branch</p>
+</li>
+<li><p>git push origin master</p>
+</li>
+</ul>
+<h3 id="Inspecting-a-Remote"><a href="#Inspecting-a-Remote" class="headerlink" title="Inspecting a Remote"></a>Inspecting a Remote</h3><ul>
+<li><p>git remote show remote</p>
+</li>
+<li><p>git remote show origin</p>
+</li>
+</ul>
+<!-- -->
+<pre><code>$ git remote show origin
+* remote origin
+Fetch URL: https://github.com/schacon/ticgit
+Push  URL: https://github.com/schacon/ticgit
+HEAD branch: master
+Remote branches:
+master                               tracked
+dev-branch                           tracked
+Local branch configured for &apos;git pull&apos;:
+master merges with remote master
+Local ref configured for &apos;git push&apos;:
+master pushes to master (up to date)
+</code></pre><h3 id="Renaming-and-Removing-Remotes"><a href="#Renaming-and-Removing-Remotes" class="headerlink" title="Renaming and Removing Remotes"></a>Renaming and Removing Remotes</h3><p>You can run git remote rename to change a remote’s shortname. For<br>instance, if you want to rename pb to paul, you can do so with git<br>remote rename:</p>
+<pre><code>$ git remote rename pb paul
+$ git remote
+origin
+paul
+</code></pre><p>remove a remote:</p>
+<ul>
+<li><p>git remote remove paul</p>
+</li>
+<li><p>git remote rm</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -690,182 +930,6 @@
             <p><a href="http://pandoc.org/getting-started.html" target="_blank" rel="noopener">pandoc </a> 是一个标记语言转换工具，在<a href="https://github.com/jgm/pandoc/releases/tag/2.7.1" target="_blank" rel="noopener">这里</a>可以下载安装。安装后，在命令行内使用，使用方法</p>
 <p>例如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pandoc --version //查看版本</span><br><span class="line">pandoc learnGit.tex -f latex -t markdown -s -o learnGit.md //把latex代码转化成markdown代码</span><br><span class="line">pandoc learnGit.tex -f latex -t html -s -o learnGit.html//把latex代码转化成html代码</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/learnGit/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="cgdog">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cgdog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/29/learnGit/" itemprop="url">learnGit</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-29T20:14:37+08:00">
-                2019-03-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Git Book读书笔记: <a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">https://git-scm.com/book/en/v2</a></p>
-<h1 id="Get-git-repository"><a href="#Get-git-repository" class="headerlink" title="Get git repository"></a>Get git repository</h1><p><em>两种方法：</em></p>
-<h4 id="1-从本地目录创建"><a href="#1-从本地目录创建" class="headerlink" title="1 从本地目录创建"></a>1 从本地目录创建</h4><p>1)  cd e:/mynotes</p>
-<p>2)  git init</p>
-<p>3)  git add *.c</p>
-<p>4)  git add LICENSE</p>
-<p>5)  git commit -m ‘initial project version’</p>
-<p>删除文件用 git rm</p>
-<h4 id="2-从远程clone一个仓库到本地"><a href="#2-从远程clone一个仓库到本地" class="headerlink" title="2 从远程clone一个仓库到本地"></a>2 从远程clone一个仓库到本地</h4><ul>
-<li>git clone <a href="https://github.com/libgit2/libgit2" target="_blank" rel="noopener">https://github.com/libgit2/libgit2</a></li>
-<li>git clone <a href="https://github.com/libgit2/libgit2" target="_blank" rel="noopener">https://github.com/libgit2/libgit2</a> mylibgit</li>
-</ul>
-<h1 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h1><p>git add is a multipurpose command. <em>git add</em>是一个多功能的命令：</p>
-<ul>
-<li>to begin tracking new files</li>
-<li>to stage files</li>
-<li>to do other things like marking merge-conflicted files as resolved</li>
-</ul>
-<p>It may be helpful to think of it more as “add precisely this content to<br>the next commit” rather than “add this file to the project”.</p>
-<h2 id="忽略某些文件的方法，添加-gitignore文件"><a href="#忽略某些文件的方法，添加-gitignore文件" class="headerlink" title="忽略某些文件的方法，添加.gitignore文件:"></a>忽略某些文件的方法，添加.gitignore文件:</h2><p><a href="https://github.com/github/gitignore" target="_blank" rel="noopener">https://github.com/github/gitignore</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> # ignore all .a files</span><br><span class="line">*.a</span><br><span class="line"></span><br><span class="line"># but do track lib.a, even though you&apos;re ignoring .a files above</span><br><span class="line">!lib.a</span><br><span class="line"></span><br><span class="line"># only ignore the TODO file in the current directory, </span><br><span class="line">#not subdir/TODO</span><br><span class="line">/TODO</span><br><span class="line"></span><br><span class="line"># ignore all files in any directory named build</span><br><span class="line">build/</span><br><span class="line"></span><br><span class="line"># ignore doc/notes.txt, but not doc/server/arch.txt</span><br><span class="line">doc/*.txt</span><br><span class="line"></span><br><span class="line"># ignore all .pdf files in the doc/ directory </span><br><span class="line"># and any of its subdirectories</span><br><span class="line">doc/**/*.pdf</span><br></pre></td></tr></table></figure>
-<h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><ul>
-<li>git log</li>
-<li>git log -p</li>
-<li>git log -p -2</li>
-<li>git log –stat</li>
-<li>git log –pretty=oneline</li>
-<li>git log –pretty=format:\”</li>
-<li>git log –since=2.weeks</li>
-<li>git log S function_name</li>
-</ul>
-<h2 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m &apos;initial commit&apos;</span><br><span class="line">$ git add forgotten_file</span><br><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure>
-<p>You end up with a single commit — the second commit replaces the<br>results of the first.</p>
-<h2 id="remote"><a href="#remote" class="headerlink" title="remote"></a>remote</h2><ul>
-<li>git remote</li>
-<li>git remote -v</li>
-</ul>
-<h3 id="Adding-Remote-Repositories"><a href="#Adding-Remote-Repositories" class="headerlink" title="Adding Remote Repositories"></a>Adding Remote Repositories</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git remote</span><br><span class="line">origin</span><br><span class="line">$ git remote add pb https://github.com/paulboone/ticgit</span><br><span class="line">$ git remote -v</span><br><span class="line">origin  https://github.com/schacon/ticgit (fetch)</span><br><span class="line">origin  https://github.com/schacon/ticgit (push)</span><br><span class="line">pb  https://github.com/paulboone/ticgit (fetch)</span><br><span class="line">pb  https://github.com/paulboone/ticgit (push)</span><br></pre></td></tr></table></figure>
-<h3 id="Fetching-and-Pulling-from-Your-Remotes"><a href="#Fetching-and-Pulling-from-Your-Remotes" class="headerlink" title="Fetching and Pulling from Your Remotes"></a>Fetching and Pulling from Your Remotes</h3><h4 id="git-fetch-remote"><a href="#git-fetch-remote" class="headerlink" title="git fetch remote"></a>git fetch remote</h4><p>The command goes out to that remote project and pulls down all the data<br>from that remote project that you don’t have yet.\<br><em>It’s important to note that the git fetch command only downloads the<br>data to your local repository: it doesn’t automatically merge it with<br>any of your work or modify what you’re currently working on. You have to<br>merge it manually into your work when you’re ready.</em></p>
-<p><em>If your current branch is set up to track a remote branch (see the next<br>section and Git Branching for more information), you can use the <strong>git<br>pull</strong> command to automatically fetch and then merge that remote branch<br>into your current branch.</em></p>
-<h3 id="Pushing-to-Your-Remotes"><a href="#Pushing-to-Your-Remotes" class="headerlink" title="Pushing to Your Remotes"></a>Pushing to Your Remotes</h3><ul>
-<li>git push remote branch</li>
-<li>git push origin master</li>
-</ul>
-<h3 id="Inspecting-a-Remote"><a href="#Inspecting-a-Remote" class="headerlink" title="Inspecting a Remote"></a>Inspecting a Remote</h3><ul>
-<li>git remote show remote</li>
-<li>git remote show origin</li>
-</ul>
-<!-- -->
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git remote show origin</span><br><span class="line">* remote origin</span><br><span class="line">Fetch URL: https://github.com/schacon/ticgit</span><br><span class="line">Push  URL: https://github.com/schacon/ticgit</span><br><span class="line">HEAD branch: master</span><br><span class="line">Remote branches:</span><br><span class="line">master                               tracked</span><br><span class="line">dev-branch                           tracked</span><br><span class="line">Local branch configured for &apos;git pull&apos;:</span><br><span class="line">master merges with remote master</span><br><span class="line">Local ref configured for &apos;git push&apos;:</span><br><span class="line">master pushes to master (up to date)</span><br></pre></td></tr></table></figure>
-<h3 id="Renaming-and-Removing-Remotes"><a href="#Renaming-and-Removing-Remotes" class="headerlink" title="Renaming and Removing Remotes"></a>Renaming and Removing Remotes</h3><p>You can run git remote rename to change a remote’s shortname. For<br>instance, if you want to rename pb to paul, you can do so with git<br>remote rename:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git remote rename pb paul</span><br><span class="line">$ git remote</span><br><span class="line">origin</span><br><span class="line">paul</span><br></pre></td></tr></table></figure>
-<p>remove a remote:</p>
-<ul>
-<li>git remote remove paul</li>
-<li>git remote rm</li>
-</ul>
 
           
         
