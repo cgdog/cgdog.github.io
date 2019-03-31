@@ -486,34 +486,12 @@ doc/*.txt
 # ignore all .pdf files in the doc/ directory 
 # and any of its subdirectories
 doc/**/*.pdf
-</code></pre><h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><ul>
-<li><p>git log</p>
-</li>
-<li><p>git log -p</p>
-</li>
-<li><p>git log -p -2</p>
-</li>
-<li><p>git log –stat</p>
-</li>
-<li><p>git log –pretty=oneline</p>
-</li>
-<li><p>git log –pretty=format:\”</p>
-</li>
-<li><p>git log –since=2.weeks</p>
-</li>
-<li><p>git log S function_name</p>
-</li>
-</ul>
+</code></pre><h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">git log -p</span><br><span class="line">git log -p -2</span><br><span class="line">git log --stat</span><br><span class="line">git log --pretty=oneline</span><br><span class="line">git log --pretty=format:\&quot;</span><br><span class="line">git log --since=2.weeks</span><br><span class="line">git log S function\_name</span><br></pre></td></tr></table></figure>
 <h2 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h2><pre><code>$ git commit -m &apos;initial commit&apos;
 $ git add forgotten_file
 $ git commit --amend
 </code></pre><p>You end up with a single commit — the second commit replaces the<br>results of the first.</p>
-<h2 id="remote"><a href="#remote" class="headerlink" title="remote"></a>remote</h2><ul>
-<li><p>git remote</p>
-</li>
-<li><p>git remote -v</p>
-</li>
-</ul>
+<h2 id="remote"><a href="#remote" class="headerlink" title="remote"></a>remote</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
 <h3 id="Adding-Remote-Repositories"><a href="#Adding-Remote-Repositories" class="headerlink" title="Adding Remote Repositories"></a>Adding Remote Repositories</h3><pre><code>$ git remote
 origin
 $ git remote add pb https://github.com/paulboone/ticgit
@@ -561,6 +539,32 @@ paul
 <li><p>git remote rm</p>
 </li>
 </ul>
+<h3 id="Listing-your-tags-显示tag"><a href="#Listing-your-tags-显示tag" class="headerlink" title="Listing your tags(显示tag)"></a>Listing your tags(显示tag)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git tag</span><br><span class="line">git tag -l</span><br><span class="line">git tag -list</span><br></pre></td></tr></table></figure>
+<h3 id="Creating-tags"><a href="#Creating-tags" class="headerlink" title="Creating tags"></a>Creating tags</h3><p>Git 支持两种 tags: <em>lightweight</em> and <em>annotated</em>. </p>
+<p>A lightweight tag is very much like a branch that doesn’t change — it’s just a pointer to a specific commit.</p>
+<p>Annotated tags, however, are stored as full objects in the Git database. 一般使用annotated tag.</p>
+<ul>
+<li><p>创建Annotated tag:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git tag -a v1.4 -m &quot;my version 1.4&quot;</span><br><span class="line">//查看annotated tag:</span><br><span class="line">git show v1.4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建Lightweight Tags</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git tag v1.4-lw</span><br><span class="line">git show v1.4-lw</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>以上是对当上次commit进行打tag。</p>
+<hr>
+<p>若要对之前某次commit打tag：</p>
+<p>首先假设如下是之前的提交历史记录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git log --pretty=oneline</span><br><span class="line">15027957951b64cf874c3557a0f3547bd83b3ff6 Merge branch &apos;experiment&apos;</span><br><span class="line">a6b4c97498bd301d84096da251c98a07c7723e65 beginning write support</span><br><span class="line">0d52aaab4479697da7686c15f77a3d64d9165190 one more thing</span><br><span class="line">6d52a271eda8725415634dd79daabbc4d9b6008e Merge branch &apos;experiment&apos;</span><br><span class="line">0b7434d86859cc7b8c3d5e1dddfed66ff742fcbc added a commit function</span><br><span class="line">4682c3261057305bdd616e23b64b0857d832627b added a todo file</span><br><span class="line">166ae0c4d3f420721acbb115cc33848dfcc2121a started write support</span><br><span class="line">9fceb02d0ae598e95dc970b74767f19372d61af8 updated rakefile</span><br><span class="line">964f16d36dfccde844893cac5b347e7b3d44abbc commit the todo</span><br><span class="line">8a5cbc430f1a9c3d00faaeffd07798508422908a updated readme</span><br></pre></td></tr></table></figure></p>
+<p>为了在message为”updated rakefile”上打tag，只需要在git tag -a v1.2 后面加上校验和的(前面的)一部分即可。如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -a v1.2 9fceb02</span><br></pre></td></tr></table></figure></p>
+<h3 id="把tag推送到remote-server"><a href="#把tag推送到remote-server" class="headerlink" title="把tag推送到remote server"></a>把tag推送到remote server</h3><p>默认情况下，<code>git push</code>不会把tag推送到服务器，推送方法：git push origin <tagname><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git push origin v1.5</span><br><span class="line">//或者</span><br><span class="line">git push origin --tags // 把所有tag推送到remote server</span><br></pre></td></tr></table></figure></tagname></p>
+<h3 id="Delete-tags-删除tags"><a href="#Delete-tags-删除tags" class="headerlink" title="Delete tags 删除tags"></a>Delete tags 删除tags</h3><h4 id="删除本地tag-git-tag-d-lt-tagname-gt"><a href="#删除本地tag-git-tag-d-lt-tagname-gt" class="headerlink" title="删除本地tag:git tag -d &lt;tagname&gt;"></a>删除本地tag:<code>git tag -d &lt;tagname&gt;</code></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -d v1.4-lw</span><br></pre></td></tr></table></figure>
+<h4 id="删除remote-server上的tags"><a href="#删除remote-server上的tags" class="headerlink" title="删除remote server上的tags:"></a>删除remote server上的tags:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git push origin --delete &lt;tagname&gt;</span><br><span class="line">// 或者</span><br><span class="line">git push origin :refs/tags/v1.4-lw</span><br></pre></td></tr></table></figure>
+<p>查看远程所有的分支和tag:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git ls-remote</span><br></pre></td></tr></table></figure></p>
+<h3 id="Git-alias"><a href="#Git-alias" class="headerlink" title="Git alias"></a>Git alias</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global alias.co checkout</span><br><span class="line">$ git config --global alias.br branch</span><br><span class="line">$ git config --global alias.ci commit</span><br><span class="line">$ git config --global alias.st status</span><br></pre></td></tr></table></figure>
+<p>也可用于自定义命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global alias.unstage &apos;reset HEAD --&apos; //添加unstage命令</span><br></pre></td></tr></table></figure></p>
+<p>所以以下两条命令就等价了:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git unstage fileA</span><br><span class="line">$ git reset HEAD -- fileA</span><br></pre></td></tr></table></figure></p>
+<p>另外，可以添加一个last命令，查看上一次的commit情况:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global alias.last &apos;log -1 HEAD&apos;</span><br></pre></td></tr></table></figure></p>
+<p>之后，想查看上次的commit情况，只需输入:<code>git last</code></p>
 
           
         
