@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Unity3D,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Unity Scriptable Render Pipeline (SRP)学习笔记可编写脚本的渲染管线？  参考链接:  Unity Scriptable Render Pipeline SRP Wiki Scriptable Render Pipeline Overview The Lightweight Render Pipeline: Optimizing Real Time Perfor">
+<meta name="keywords" content="Unity3D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scritpable render pipleline">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/Scritpable-rendering-pipleline/index.html">
+<meta property="og:site_name" content="cgdog">
+<meta property="og:description" content="Unity Scriptable Render Pipeline (SRP)学习笔记可编写脚本的渲染管线？  参考链接:  Unity Scriptable Render Pipeline SRP Wiki Scriptable Render Pipeline Overview The Lightweight Render Pipeline: Optimizing Real Time Perfor">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-01T15:21:46.158Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scritpable render pipleline">
+<meta name="twitter:description" content="Unity Scriptable Render Pipeline (SRP)学习笔记可编写脚本的渲染管线？  参考链接:  Unity Scriptable Render Pipeline SRP Wiki Scriptable Render Pipeline Overview The Lightweight Render Pipeline: Optimizing Real Time Perfor">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/29/Scritpable-rendering-pipleline/">
+
+
+
+
+
+  <title>Scritpable render pipleline | cgdog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cgdog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/Scritpable-rendering-pipleline/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cgdog">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cgdog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Scritpable render pipleline</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-29T23:11:59+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Unity-Scriptable-Render-Pipeline-SRP-学习笔记"><a href="#Unity-Scriptable-Render-Pipeline-SRP-学习笔记" class="headerlink" title="Unity Scriptable Render Pipeline (SRP)学习笔记"></a>Unity Scriptable Render Pipeline (SRP)学习笔记</h1><p>可编写脚本的渲染管线？</p>
+<blockquote>
+<p><strong><em>参考链接:</em></strong></p>
+<ol>
+<li><a href="https://github.com/Unity-Technologies/ScriptableRenderPipeline" target="_blank" rel="noopener">Unity Scriptable Render Pipeline</a></li>
+<li><a href="https://github.com/Unity-Technologies/ScriptableRenderPipeline/wiki" target="_blank" rel="noopener">SRP Wiki</a></li>
+<li><a href="https://blogs.unity3d.com/2018/01/31/srp-overview/" target="_blank" rel="noopener">Scriptable Render Pipeline Overview</a></li>
+<li><a href="https://blogs.unity3d.com/2018/02/21/the-lightweight-render-pipeline-optimizing-real-time-performance/" target="_blank" rel="noopener">The Lightweight Render Pipeline: Optimizing Real Time Performance</a></li>
+<li><a href="https://github.com/stramit/SRPBlog/tree/master/SRP-Demo" target="_blank" rel="noopener">SRP-Demo</a></li>
+</ol>
+</blockquote>
+<h2 id="SRP概述"><a href="#SRP概述" class="headerlink" title="SRP概述"></a>SRP概述</h2><p>SRP是新的Unity特性(目前于预览版，以后可能会发生大的变动)，可使开发者完全掌控Unity渲染管线，允许开发者写C#脚本控制Unity渲染每一帧的方式。<br>可以在 <strong>Unity 2018.1+</strong>版本中使用.</p>
+<p>SRP可以分为两部分: <strong>SRP asset</strong>和<strong>SRP instance</strong>。两者在自制渲染管线时都很重要。</p>
+<h3 id="SRP-Asset"><a href="#SRP-Asset" class="headerlink" title="SRP Asset"></a>SRP Asset</h3><p>SRP Asset是一个project asset，表示渲染管线的一个具体配置(specific configuration)，例如:</p>
+<ul>
+<li>是否应该投下阴影</li>
+<li>使用什么着色器质量级别(shader quality level)</li>
+<li>阴影距离是多少</li>
+<li>默认材质配置<br><strong>SRP Asset表示SRP的类型(type)和配置(settings)</strong>。</li>
+</ul>
+<h3 id="SRP-Instance"><a href="#SRP-Instance" class="headerlink" title="SRP Instance"></a>SRP Instance</h3><p>**SRP instance是实际完成渲染(rendering)的类(class)。</p>
+<p>当Unity发现SRP开启时，它会查看当前使用的SRP asset，要求其提供一个’rendering instance’。</p>
+<p>SRP Instance表示一个管道配置(pipeline configuration)。渲染器调用Instance，则可以完成以下动作：</p>
+<ul>
+<li>清除帧缓存(Clearing the framebuffer)</li>
+<li>完成场景剔除(Performing scene culling)</li>
+<li>渲染一些对象(Rendering sets of objects)</li>
+<li>完成blit操作(Doing blits from one frame buffer to another)</li>
+<li>渲染阴影(Rendering shadows)</li>
+<li>实施后处理效果(Applying post process effects)</li>
+</ul>
+<h2 id="简单的SRP例子"><a href="#简单的SRP例子" class="headerlink" title="简单的SRP例子"></a>简单的SRP例子</h2><p>由上面的叙述可知，SRP Asset是一个ScriptableObject，它包含渲染管线相关的配置，可以返回一个渲染管线实例，用于渲染，替代Unity标准的渲染(standard Unity rendering)。</p>
+<p>如果SRP asset上的一个设置(setting)发生了改变，所有对应的已创建的SRP instance将会被销毁，并在渲染下一帧时创建新的instance(带有改变后的新设置settings)。</p>
+<p>下面是一个简单地SRP asset类，它包含一个color，由返回的Instance使用，使用clearColor来清除屏幕。<br>其中<code>CreateBasicAssetPipeline()</code>方法只能在Editor模式下使用，它用于创建这个asset。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[ExecuteInEditMode]</span><br><span class="line">public class BasicAssetPipe : RenderPipelineAsset</span><br><span class="line">&#123;</span><br><span class="line">    public Color clearColor = Color.green;</span><br><span class="line"></span><br><span class="line">#if UNITY_EDITOR</span><br><span class="line">    // Call to create a simple pipeline</span><br><span class="line">    [UnityEditor.MenuItem(&quot;SRP-Demo/01 - Create Basic Asset Pipeline&quot;)]</span><br><span class="line">    static void CreateBasicAssetPipeline()</span><br><span class="line">    &#123;</span><br><span class="line">        var instance = ScriptableObject.CreateInstance&lt;BasicAssetPipe&gt;();</span><br><span class="line">        UnityEditor.AssetDatabase.CreateAsset(instance, &quot;Assets/BasicAssetPipe.asset&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">    // Function to return an instance of this pipeline</span><br><span class="line">    protected override IRenderPipeline InternalCreatePipeline()</span><br><span class="line">    &#123;</span><br><span class="line">        return new BasicPipeInstance(clearColor);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码<code>InternalCreatePipeline()</code>返回的<code>BasicPipeInstance</code>即为SRP Instance。必须实现创建Instance类，因为所有的渲染逻辑都在它里面。</p>
+<p>最简单的SRP Instance可以仅包含一个<code>Render</code>方法，有两个参数，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class BasicPipeInstance : RenderPipeline</span><br><span class="line">&#123;</span><br><span class="line">    private Color m_ClearColor = Color.black;</span><br><span class="line"></span><br><span class="line">    public BasicPipeInstance(Color clearColor)</span><br><span class="line">    &#123;</span><br><span class="line">        m_ClearColor = clearColor;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public override void Render(ScriptableRenderContext context, Camera[] cameras)</span><br><span class="line">    &#123;</span><br><span class="line">        // does not so much yet :()</span><br><span class="line">        base.Render(context, cameras);</span><br><span class="line"></span><br><span class="line">        // clear buffers to the configured color</span><br><span class="line">        var cmd = new CommandBuffer();</span><br><span class="line">        cmd.ClearRenderTarget(true, true, m_ClearColor);</span><br><span class="line">        context.ExecuteCommandBuffer(cmd);</span><br><span class="line">        cmd.Release();</span><br><span class="line">        context.Submit();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个pipeline就是完成了使用给定的颜色<code>m_ClearColor</code>来清除屏幕。注意:</p>
+<ul>
+<li>CommandBuffer可以用来完成许多操作(此处是ClearRenderTarget )</li>
+<li>CommandBuffer被放入<a href="ScriptableRenderContext">context</a>中</li>
+<li>渲染的最后一步是调用Submit，这会执行渲染环境(render contex)中放入的队列</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unity3D/" rel="tag"># Unity3D</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/29/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/01/learnGit/" rel="prev" title="Learn Git">
+                Learn Git <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cgdog</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Unity-Scriptable-Render-Pipeline-SRP-学习笔记"><span class="nav-number">1.</span> <span class="nav-text">Unity Scriptable Render Pipeline (SRP)学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SRP概述"><span class="nav-number">1.1.</span> <span class="nav-text">SRP概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SRP-Asset"><span class="nav-number">1.1.1.</span> <span class="nav-text">SRP Asset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SRP-Instance"><span class="nav-number">1.1.2.</span> <span class="nav-text">SRP Instance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的SRP例子"><span class="nav-number">1.2.</span> <span class="nav-text">简单的SRP例子</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cgdog</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

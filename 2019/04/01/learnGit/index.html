@@ -83,11 +83,11 @@
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Learn Git">
-<meta property="og:url" content="http://yoursite.com/2019/03/29/learnGit/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/04/01/learnGit/index.html">
 <meta property="og:site_name" content="cgdog">
 <meta property="og:description" content="Git Book读书笔记: https://git-scm.com/book/en/v2 Get git repository两种方法： 1 从本地目录创建1)  cd e:/mynotes 2)  git init 3)  git add *.c 4)  git add LICENSE 5)  git commit -m ‘initial project version’ 删除文件用 git r">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-01T00:38:19.618Z">
+<meta property="og:updated_time" content="2019-04-01T14:53:59.445Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Learn Git">
 <meta name="twitter:description" content="Git Book读书笔记: https://git-scm.com/book/en/v2 Get git repository两种方法： 1 从本地目录创建1)  cd e:/mynotes 2)  git init 3)  git add *.c 4)  git add LICENSE 5)  git commit -m ‘initial project version’ 删除文件用 git r">
@@ -100,7 +100,7 @@
     root: '/',
     scheme: 'Muse',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/29/learnGit/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/01/learnGit/">
 
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/learnGit/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/01/learnGit/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cgdog">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-29T22:16:45+08:00">
-                2019-03-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-01T22:53:59+08:00">
+                2019-04-01
               </time>
             
 
@@ -327,10 +327,9 @@
 <p>3)  git add *.c</p>
 <p>4)  git add LICENSE</p>
 <p>5)  git commit -m ‘initial project version’</p>
-<p>删除文件用 git rm。 从git版本库中删除文件但不在磁盘上删除：</p>
-<pre><code>git rm -r public/ --cached
-git commit -m &quot;remove public folder from git&quot;
-</code></pre><h4 id="2-从远程clone一个仓库到本地"><a href="#2-从远程clone一个仓库到本地" class="headerlink" title="2 从远程clone一个仓库到本地"></a>2 从远程clone一个仓库到本地</h4><ul>
+<p>删除文件用 git rm。 从git版本库中删除文件但不在磁盘上删除：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rm -r public/ --cached</span><br><span class="line">git commit -m &quot;remove public folder from git&quot;</span><br></pre></td></tr></table></figure></p>
+<p>清除目录下未跟踪的目录及文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clean -df</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-从远程clone一个仓库到本地"><a href="#2-从远程clone一个仓库到本地" class="headerlink" title="2 从远程clone一个仓库到本地"></a>2 从远程clone一个仓库到本地</h4><ul>
 <li><p>git clone <a href="https://github.com/libgit2/libgit2" target="_blank" rel="noopener">https://github.com/libgit2/libgit2</a></p>
 </li>
 <li><p>git clone <a href="https://github.com/libgit2/libgit2" target="_blank" rel="noopener">https://github.com/libgit2/libgit2</a> mylibgit</p>
@@ -478,8 +477,8 @@ paul
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/29/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/03/29/Scritpable-rendering-pipleline/" rel="next" title="Scritpable render pipleline">
+                <i class="fa fa-chevron-left"></i> Scritpable render pipleline
               </a>
             
           </div>
@@ -487,10 +486,6 @@ paul
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/29/Scritpable-post-rendering/" rel="prev" title="Scritpable post rendering">
-                Scritpable post rendering <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -622,6 +617,13 @@ paul
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -643,15 +645,9 @@ paul
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
@@ -668,11 +664,6 @@ paul
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
