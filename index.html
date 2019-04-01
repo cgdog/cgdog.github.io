@@ -565,6 +565,9 @@ paul
 <p>所以以下两条命令就等价了:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git unstage fileA</span><br><span class="line">$ git reset HEAD -- fileA</span><br></pre></td></tr></table></figure></p>
 <p>另外，可以添加一个last命令，查看上一次的commit情况:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global alias.last &apos;log -1 HEAD&apos;</span><br></pre></td></tr></table></figure></p>
 <p>之后，想查看上次的commit情况，只需输入:<code>git last</code></p>
+<h3 id="Creating-a-New-Branch"><a href="#Creating-a-New-Branch" class="headerlink" title="Creating a New Branch"></a>Creating a New Branch</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch newbranchname</span><br></pre></td></tr></table></figure>
+<p><strong>HEAD</strong>是一个特殊的指针，指向当前工作的branch. 可以用git log可查看其指向:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline --decorate</span><br></pre></td></tr></table></figure></p>
+<h3 id="Switching-Branches"><a href="#Switching-Branches" class="headerlink" title="Switching Branches"></a>Switching Branches</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout abranchname // HEAD指针会指向abranchname分支</span><br></pre></td></tr></table></figure>
 
           
         
